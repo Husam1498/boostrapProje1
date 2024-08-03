@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        background-color: black;
+      }
+      .card {
+        background-color: bisque;
+        margin: 50vh 70vh;
+        padding: 20px;
+
+        text-align: center;
+        border-radius: 10px;
+        position: relative;
+      }
+      @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      .card::after,
+      .card::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-image: conic-gradient(
+          from var(--angle),
+          transparent 90%,
+          red,
+          yellow,
+          green,
+          purple
+        );
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        z-index: -1;
+        padding: 5px;
+        border-radius: 10px;
+        animation: 6s spin linear infinite;
+      }
+      .card::before {
+        filter: blur(1.5rem);
+      }
+      @keyframes spin {
+        from {
+          --angle: 0deg;
+        }
+        to {
+          --angle: 360deg;
+        }
+      }
+    </style>
+  </head>
+  <body class="container">
+    <div class="card">
+      <div style="max-width: 350px">
+        <h1>Lorem, ipsum dolor.</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto aliquid
+          sit a quae harum impedit.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
